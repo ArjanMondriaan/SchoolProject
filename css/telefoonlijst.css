@@ -1,0 +1,145 @@
+*{
+    padding:0;
+    margin:0;
+}
+body {
+    width:1020px;
+    margin:20px auto;
+    background-color:white;
+    font-family: 'Open Sans', sans-serif;
+    font-size:1em;
+    border: 1px solid black;
+}
+em{
+    font-weight:bold;
+    font-style:normal;
+}
+header{
+    border-bottom:5px solid green;
+    padding:10px 5px 5px 5px;
+    overflow: auto;
+    width: 100%;
+    box-sizing:border-box;
+    
+}
+header div{
+    float:left;
+    padding:0 1%;
+}
+header figure:last-child{
+    float:right;
+    width:10%;
+}
+header figure:last-child a{
+    box-sizing:border-box;
+    padding:0px;
+}
+header figure:last-child a:hover{
+    padding:inherit;
+    background-color:inherit;
+    border:none;
+}
+header p{
+    padding:5px 0 5px 10px;
+}
+header #boodschap{
+    background-color:yellow;
+}
+header figure{
+    float:left;
+    width:20%;
+    box-sizing:border-box;
+}
+header figure img{
+    width:70%;
+}
+
+header a{
+    padding:5px;
+}
+
+/*nav li{
+    list-style:none;
+    box-sizing:border-box;
+}
+nav li li{
+    padding-left: 20px;
+}
+nav li a{
+    padding:10px 0 10px 0;
+    display:block;
+    box-sizing:border-box;
+    width:100%;
+    height:2.5em;
+    
+}*/
+/*nav li a:hover, header a:hover{
+    background:#ffff00;
+    color:#ff0033;
+    border:solid red 2px;
+    font-weight: bold;
+    padding-left:10px;
+    
+}*/
+/*nav ul li{
+    padding-left:30px;
+    
+    box-sizing:border-box;
+}
+nav ul li>ul{
+    display:inline;
+}*/
+
+body>section{
+    overflow: auto;
+    width: 100%;
+}
+footer{
+    text-align:center;
+    font-size: 0.8em;
+    padding:10px 0;
+    background-color:green;
+}
+
+body>section>#content {   
+    padding:20px 0px 20px 0;         
+}
+
+#inlogform{
+    display: inline-block;
+    float: right;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+   background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: green;
+    color:white;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+td.required:before{
+    content:"* ";
+    color:red;
+    font-size: 0.8em;
+}
