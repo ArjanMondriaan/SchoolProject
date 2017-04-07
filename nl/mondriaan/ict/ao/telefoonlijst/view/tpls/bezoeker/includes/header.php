@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Telefoonlijst</title>
+        <title>Training Factory</title>
         <link rel="STYLESHEET" href="css/telefoonlijst.css" type="text/css">
         <link rel="STYLESHEET" href="css/bezoeker.css" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
