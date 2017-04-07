@@ -43,13 +43,50 @@ class LidModel extends \ao\php\framework\models\AbstractModel
        return empty($_POST);
     }
     
-    function getGegegevens(){
+    public function getGegevens(){
         $sql = 'SELECT * FROM `persons` WHERE id = :id';
+         
         $stmnt = $this->dbh->prepare($sql);
-        $gebruiker=$_SESSION['gebruiker'];
-        $stmnt->bindParam(':id', $gebruiker->getId());
+        $gebruiker=$this->getGebruiker();
+        $id = $gebruiker->getId();
+        $stmnt->bindParam(':id', $id);
         $stmnt->execute();
         $gegevens = $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__.'\db\Contact');
+       
         return $gegevens[0];
+    }
+    
+    public function wijzigGegevens(){
+
+            $straat=filter_input(INPUT_POST, 'straat');
+            $postcode=filter_input(INPUT_POST, 'postcode');
+            $stad=filter_input(INPUT_POST, 'stad');
+            $email= filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+            
+                $sql="UPDATE `persons` SET street=:straat"
+            . ",postalcode=:postcode,place=:stad,"
+             . "emailaddress=:email where `persons`.`id`= '1' ";
+            
+            $stmnt = $this->dbh->prepare($sql);
+            $stmnt->bindParam(':straat', $straat);
+            $stmnt->bindParam(':postcode', $postcode);
+            $stmnt->bindParam(':stad', $stad);
+            $stmnt->bindParam(':email', $email);
+            try
+            {
+                $stmnt->execute();
+            }
+            catch(\PDOEXception $e)
+            {
+                return REQUEST_FAILURE_DATA_INVALID;
+            }
+
+            if($stmnt->rowCount()===1)
+            {
+                return REQUEST_SUCCESS;
+                
+            }
+            return REQUEST_FAILURE_DATA_INVALID; 
     }
 }
