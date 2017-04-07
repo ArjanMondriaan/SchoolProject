@@ -14,7 +14,7 @@
             </figure>
             <div>
                 <h1 id="titeltekst">
-                    Training Centrum MEME </br> Den Haag
+                    Training Centrum </br> Den Haag
                 </h1>
             </div>
             <form  method="post" autocomplete="off" id="inlogform">
