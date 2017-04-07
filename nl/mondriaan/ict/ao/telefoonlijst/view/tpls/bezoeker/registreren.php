@@ -29,7 +29,7 @@ include 'includes/menu.php';?>
                         <tr>
                             <td class="required" >Geboortedatum:</td>
                             <td>
-                                <input type="text" autocomplete="off" name="geboortedatum" required="required" />
+                                <input type="date" autocomplete="off" name="geboortedatum" required="required" />
                             </td>
                         </tr>
                         <tr>
@@ -41,32 +41,26 @@ include 'includes/menu.php';?>
                         <tr>
                             <td class="required" >Wachtwoord:</td>
                             <td>
-                                <input type="password" autocomplete="off" name="password" required="required" />
+                                <input type="password" autocomplete="off" name="password"/>
                             </td>
                         </tr>
                         <tr>
                             <td class="required" >Herhaling wachtwoord:</td>
                             <td>
-                                <input type="password" autocomplete="off" name="password2" required="required" />
+                                <input type="password" autocomplete="off" name="password2" />
                             </td>
                         </tr>
                         <tr>
                             <td class="required">Geslacht:</td>
                             <td>
-                                <input type="radio" name="geslacht" value="man" checked> Man<br>
-                                <input type="radio" name="geslacht" value="vrouw" checked> Vrouw<br>
+                                <input type="radio" name="geslacht" value="male" checked> Man<br>
+                                <input type="radio" name="geslacht" value="female" checked> Vrouw<br>
                             </td>
                         </tr>
                         <tr>
                             <td class="required" >Straat:</td>
                             <td>
                                 <input type="text" autocomplete="off" name="straat" required="required" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="required" >Huisnummer:</td>
-                            <td>
-                                <input type="text" autocomplete="off" name="huisnummer" required="required" />
                             </td>
                         </tr>
                         <tr>
@@ -90,7 +84,7 @@ include 'includes/menu.php';?>
                         <tr>
                             <td></td>
                             <td>
-                                <input type="submit" value="inloggen"><input type="reset" value="reset" />
+                                <input type="submit" value="registreren"><input type="reset" value="reset" />
                             </td>
                         </tr>
                     </table>

@@ -7,117 +7,74 @@ class BezoekerModel extends \ao\php\framework\models\AbstractModel
     {   
         parent::__construct($control, $action);
     }
-    public function getContacten()
+    public function registreren()
     {
-       $aid= filter_input(INPUT_GET,'aid',FILTER_VALIDATE_INT);
-       
-       if($aid===null)
-       {
-           return REQUEST_FAILURE_DATA_INCOMPLETE;
-       }
-       if($aid===false)
-       {
-           return REQUEST_FAILURE_DATA_INVALID;
-       }      
-       
-       $sql = "SELECT * FROM `contacten` WHERE `contacten`.`afdelings_id`= :aid  ORDER BY achternaam";
-       $stmnt = $this->dbh->prepare($sql);
-       $stmnt->bindParam(':aid',$aid);
-       $stmnt->execute();
-       $contacten = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Contact');    
-       return $contacten;
-    }
-    public function getContact()
-    {
-        $id= filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
-       
-        if($id===null)
-        {
-           return REQUEST_FAILURE_DATA_INCOMPLETE;
-        }
-        if($id===false)
-        {
-           return REQUEST_FAILURE_DATA_INVALID;
-        }      
-       
-        $sql = "SELECT * FROM `contacten` WHERE `contacten`.`id`= :id";
-        $stmnt = $this->dbh->prepare($sql);
-        $stmnt->bindParam(':id',$id);
-        $stmnt->execute();
-        $contacten = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Contact'); 
-        if(empty($contacten))
-        {
-            return REQUEST_FAILURE_DATA_INVALID;
-        }
-        return $contacten[0];
-    }
-   
-    public function getAfdelingen()
-    {
-       $sql = 'SELECT * FROM `afdelingen` ORDER BY naam';
-       $stmnt = $this->dbh->prepare($sql);
-       $stmnt->execute();
-       $afdelingen = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Afdeling');    
-       return $afdelingen;
-    }
-    
-    public function getAfdeling()
-    {
-       $aid= filter_input(INPUT_GET,'aid',FILTER_VALIDATE_INT);
-       
-       if($aid===null)
-       {
-           return REQUEST_FAILURE_DATA_INCOMPLETE;
-       }
-       if($aid===false)
-       {
-           return REQUEST_FAILURE_DATA_INVALID;
-       }  
-       
-       $sql = 'SELECT * FROM `afdelingen` WHERE `afdelingen`.`id`= :aid';
-       $stmnt = $this->dbh->prepare($sql);                      
-       $stmnt->bindParam(':aid',$aid);
-       $stmnt->execute();
-       $afdelingen = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Afdeling'); 
-       if(empty($afdelingen))
-       {
-            return REQUEST_FAILURE_DATA_INVALID;
-       }
-       return $afdelingen[0];
-    }
-    
-    public function getDirecteur() 
-    {
-       $sql = "SELECT * FROM `contacten` WHERE `contacten`.`recht`= 'directeur'";
-       $stmnt = $this->dbh->prepare($sql);
-       $stmnt->execute();
-       $contacten = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Contact');    
-       return $contacten[0];
-    }
-    
-    public function controleerInloggen()
-    {
-        $gn=  filter_input(INPUT_POST, 'gn');
-        $ww=  filter_input(INPUT_POST, 'ww');
+        $gn= filter_input(INPUT_POST, 'gebruikersnaam');
+        $ww= filter_input(INPUT_POST, 'password');
+        $ww2= filter_input(INPUT_POST, 'password2');
+        $vn=filter_input(INPUT_POST, 'voornaam');
+        $tv=filter_input(INPUT_POST, 'tussenvoegsel');
+        $an=filter_input(INPUT_POST, 'achternaam');
+        $email=filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL);
+        $plaats=filter_input(INPUT_POST,'stad');
+        $straat=filter_input(INPUT_POST,'straat');
+        $postcode=filter_input(INPUT_POST,'postcode');
+        $geslacht=filter_input(INPUT_POST,'geslacht');
+        $geboortedtm = filter_input(INPUT_POST,'geboortedatum');
         
-        if ( ($gn!==null) && ($ww!==null) )
+        if($gn===null || $vn===null || $an===null ||$email===null ||$plaats===null|| $postcode===null || $geslacht===null || $geboortedtm===null || $straat===null)
         {
-             $sql = 'SELECT * FROM `contacten` WHERE `gebruikersnaam` = :gn AND `wachtwoord` = :ww';
-             $sth = $this->dbh->prepare($sql);
-             $sth->bindParam(':gn',$gn);
-             $sth->bindParam(':ww',$ww);
-             $sth->execute();
-             
-             $result = $sth->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Contact');
-             
-             if(count($result) === 1)
-             {   
-                 $this->startSessie();   
-                 $_SESSION['gebruiker']=$result[0];
-                 return REQUEST_SUCCESS;
-             }
-             return REQUEST_FAILURE_DATA_INVALID;
+            return REQUEST_FAILURE_DATA_INCOMPLETE;
         }
-        return REQUEST_FAILURE_DATA_INCOMPLETE;
+        
+        if( $email===false)
+        {
+            return REQUEST_FAILURE_DATA_INVALID;
+        }
+        
+        if(empty($ww))
+        {
+           
+            $sql= "INSERT INTO `persons` (username,password,firstname,preprovision,lastname,dateofbirth,gender,emailaddress,street,postalcode,"
+                    . "place,role) VALUES (:gebruikersnaam,'qwerty',:voorletters,:tussenvoegsel,:achternaam,:geboortedtm,:gender,
+                :email,:street,:postcode,:plaats,'lid')";
+            
+            $stmnt = $this->dbh->prepare($sql);
+        }
+        else{
+            
+            $sql= "INSERT INTO `persons` (username,password,firstname,preprovision,lastname,dateofbirth,gender,emailaddress,street,postalcode,"
+                    . "place,role) VALUES (:gebruikersnaam,:wachtwoord,:voorletters,:tussenvoegsel,:achternaam, :geboortedtm,:gender,
+                :email,:street,:postcode,:plaats,'lid')";
+            $stmnt = $this->dbh->prepare($sql);
+            $stmnt->bindParam(':wachtwoord', $ww);
+        }
+        $stmnt->bindParam(':gebruikersnaam', $gn);
+        $stmnt->bindParam(':voorletters', $vn);
+        $stmnt->bindParam(':tussenvoegsel', $tv);
+        $stmnt->bindParam(':achternaam', $an);
+        $stmnt->bindParam(':geboortedtm', $geboortedtm);
+        $stmnt->bindParam(':gender', $geslacht);
+        $stmnt->bindParam(':email', $email);
+        $stmnt->bindParam(':postcode', $postcode);
+        $stmnt->bindParam(':plaats', $plaats);
+        $stmnt->bindParam(':street', $straat);
+        
+        try
+        {
+            $stmnt->execute();
+            
+        }
+        catch(\PDOEXception $e)
+        {
+            
+            return REQUEST_FAILURE_DATA_INVALID;
+        }
+        
+        if($stmnt->rowCount()===1)
+        {            
+            return REQUEST_SUCCESS;
+        }
+        return REQUEST_FAILURE_DATA_INVALID; 
     }
 }
