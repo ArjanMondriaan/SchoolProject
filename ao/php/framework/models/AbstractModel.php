@@ -59,7 +59,7 @@ abstract class AbstractModel
     public function getGebruikerRecht()
     {
         $gebruiker = $this->getGebruiker();
-        $recht = ($gebruiker === null) ? DEFAULT_ROLE : $gebruiker->getRecht();
+        $recht = ($gebruiker === null) ? DEFAULT_ROLE : $gebruiker->getRole();
         return $recht;
     }
     
