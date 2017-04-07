@@ -21,7 +21,7 @@
                     <table>    
                         <tr>
                             <td>
-                                <input type="text" autocomplete="off" placeholder="vul uw gebuikersnaam in" name="gn" value='<?= isset($gn)?$gn:"";?>' required="required" />
+                                <input type="text" autocomplete="off" placeholder="vul uw gebuikersnaam in" name="gn" required="required" />
                             </td>
                         </tr>
                         <tr >
