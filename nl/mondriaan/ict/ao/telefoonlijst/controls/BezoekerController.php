@@ -50,6 +50,9 @@ class BezoekerController extends \ao\php\framework\controls\AbstractController
     protected function defaultAction()
     {
     }
+    protected function gedragregelsAction(){
+        
+    }
     
     protected function afdelingAction()
     {
