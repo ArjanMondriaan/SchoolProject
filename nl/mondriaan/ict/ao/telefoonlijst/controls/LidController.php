@@ -30,4 +30,8 @@ class LidController extends \ao\php\framework\controls\AbstractController
        $this->view->set("gebruiker",$gebruiker);
     }
     
+    protected function gegevensWijzigenAction(){
+       $gegevens = $this->model->getGegevens();
+       $this->view->set("gegevens",$gegevens);
+    }
 }

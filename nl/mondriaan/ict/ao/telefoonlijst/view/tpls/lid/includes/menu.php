@@ -15,5 +15,8 @@
                 <li>
                     <a href="?control=bezoeker&action=inloggen">Locatie & contact</a>
                 </li>
+                <li>
+                    <a href="?control=lid&action=gegevensWijzigen">Profiel aanpassen</a>
+                </li>
             </ul>
         </nav>

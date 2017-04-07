@@ -43,5 +43,13 @@ class LidModel extends \ao\php\framework\models\AbstractModel
        return empty($_POST);
     }
     
-    
+    function getGegegevens(){
+        $sql = 'SELECT * FROM `persons` WHERE id = :id';
+        $stmnt = $this->dbh->prepare($sql);
+        $gebruiker=$_SESSION['gebruiker'];
+        $stmnt->bindParam(':id', $gebruiker->getId());
+        $stmnt->execute();
+        $gegevens = $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__.'\db\Contact');
+        return $gegevens[0];
+    }
 }
