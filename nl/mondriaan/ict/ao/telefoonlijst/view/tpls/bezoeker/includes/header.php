@@ -37,7 +37,4 @@
                         </tr>
                     </table>
                 </form>
-        </header>
-        <section>
-
-    
+        </header> 
