@@ -31,7 +31,33 @@ class LidController extends \ao\php\framework\controls\AbstractController
     }
     
     protected function gegevensWijzigenAction(){
-       $gegevens = $this->model->getGegevens();
-       $this->view->set("gegevens",$gegevens);
+       
+       
+       if($this->model->isPostLeeg())
+        {
+           $this->view->set("boodschap","Wijzig hier je  gegevens");
+        }
+        else
+        {
+            $result = $this->model->wijzigGegevens();
+            switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','wijziging gelukt');
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("boodschap","De gegevens waren incompleet. Vul compleet in!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("boodschap","Er was niets te wijzigen");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","gebruikersnaam is al in gebruik, kies een andere waarde.");
+                    break;
+            }   
+        }
+        
+        $gegevens = $this->model->getGegevens();
+        $this->view->set("gegevens",$gegevens);
     }
 }
