@@ -89,4 +89,14 @@ class LidModel extends \ao\php\framework\models\AbstractModel
             }
             return REQUEST_FAILURE_DATA_INVALID; 
     }
+    
+    public function getAlleLessons(){
+        $sql = 'SELECT * FROM lessons';
+         
+        $stmnt = $this->dbh->prepare($sql);
+        $stmnt->execute();
+        $lessons = $stmnt->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__.'\db\Afdeling');
+       
+        return $lessons;
+    }
 }
