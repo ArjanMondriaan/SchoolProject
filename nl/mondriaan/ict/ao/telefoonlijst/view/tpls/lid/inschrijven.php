@@ -3,7 +3,7 @@ include 'includes/menu.php';?>
         <section id='content'>
             <table> 
                  <caption>
-                        Dit zijn alle beschikbare lessen
+                        Dit zijn alle beschikbare activiteiten
                  </caption>
                 <thead>
                     <tr>
