@@ -60,4 +60,9 @@ class LidController extends \ao\php\framework\controls\AbstractController
         $gegevens = $this->model->getGegevens();
         $this->view->set("gegevens",$gegevens);
     }
+    
+    protected function inschrijvenAction(){
+        $activiteiten = $this->model->getAlleActiviteiten();
+        $this->view->set("activiteiten",$activiteiten);
+    }
 }
