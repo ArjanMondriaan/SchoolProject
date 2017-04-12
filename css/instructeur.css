@@ -109,3 +109,6 @@ input{
  #content #gebruiker_form input:required:valid, #content #gebruiker_form select:required:valid{
      background-color:white;
  }
+ #content figure img{
+    width:33%;
+}
