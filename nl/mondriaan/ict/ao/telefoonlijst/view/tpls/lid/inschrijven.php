@@ -8,31 +8,74 @@ include 'includes/menu.php';?>
                 <thead>
                     <tr>
                         <td>id</td>
-                        <td>tijd</td>
                         <td>datum</td>
-                        <td>locatie</td>
-                        <td>max personen</td>                       
+                        <td>tijd</td>
+                        <td>description</td>
+                        <td>kosten</td>
+                        <td>inschrijven</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0; ?>
-                <?php foreach($lessons as $lesson){ ?>
+                <?php foreach($beschikbareLessen as $les){ ?>
                     <tr>
                         <td>
-                            <?= $lesson->getId();?></td>
+                            <?= $les->getId();?></td>
                         </td>
                         <td>
-                            <?= $lesson->getTime();?>
+                            <?= $les->getDate();?>
+                        </td>
+                        <td>
+                            <?= $les->getTime();?>
+                        </td>
+                        <td>
+                            <?= $les->getDescription();?>
+                        </td>
+                        <td>
+                            €<?= $les->getExtra_costs();?>
+                        </td>
+                        <td>
+                            <a href='?control=lid&action=addDeelname&id=<?= $les->getId()?>' >+</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+            <br>
+            <table> 
+                 <caption>
+                        Ingeschreven voor
+                 </caption>
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>datum</td>
+                        <td>tijd</td>
+                        <td>description</td>
+                        <td>kosten</td>
+                        <td>uitschrijven</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($ingeschrevenLessen as $les){ ?>
+                    <tr>
+                        <td>
+                            <?= $les->getId();?></td>
+                        </td>
+                        <td>
+                            <?= $les->getDate();?>
+                        </td>
+                        <td>
+                            <?= $les->getTime();?>
                         </td>
                         
                         <td>
-                            <?= $lesson->getDate();?>
+                            <?= $les->getDescription();?>
                         </td>
                         <td>
-                            <?= $lesson->getLocation();?>
+                            €<?= $les->getExtra_costs();?>
                         </td>
                         <td>
-                            <?= $lesson->getMaxpersons();?>
+                            <a href='?control=lid&action=deleteDeelname&id=<?= $les->getId()?>' >-</a>
                         </td>
                 <?php } ?>
                 </tbody>
