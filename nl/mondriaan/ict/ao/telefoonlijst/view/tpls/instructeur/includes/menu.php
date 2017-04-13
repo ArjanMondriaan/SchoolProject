@@ -1,8 +1,10 @@
         <nav>
             <ul>
-                <li><a href="?control=Instructeur&action=default">home</a></li>
+                <li><a href="?control=Instructeur&action=default">Home</a></li>
                 
-                <li><a href="?control=Instructeur&action=lessen">les plannen</a></li>
+                <li><a href="?control=Instructeur&action=trainingen">Edit Trainingen</a></li>
+                
+                <li><a href="?control=Instructeur&action=lessen">Edit Lessen</a></li>
                 
             </ul>
         </nav>
