@@ -17,7 +17,7 @@
                     Training Centrum </br> Den Haag
                 </h1>
             </div>
-<!--            <form  method="post" autocomplete="off" id="inlogform">
+            <form  method="post" autocomplete="off" id="inlogform">
                     <table>    
                         <tr>
                             <td>
@@ -30,11 +30,10 @@
                            </td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td>
                                 <input type="submit" value="inloggen"><input type="reset" value="reset" />
                             </td>
                         </tr>
                     </table>
-                </form>-->
+                </form>
         </header> 
