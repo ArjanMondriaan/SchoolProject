@@ -74,13 +74,13 @@ include 'includes/menu.php';?>
             <tr> 
                 <td>geboortedatum:</td>
                 <td>
-                  <input type="text"  name="geboortedatum"   required="required" value="<?=!empty($form_data['gebooretedatum'])?$form_data['geboortedatum']:'';?>">  
+                  <input type="date"  name="geboortedatum"   required="required" value="<?=!empty($form_data['gebooretedatum'])?$form_data['geboortedatum']:'';?>">  
                 </td>
             </tr>
             <tr> 
                 <td>aanneem datum:</td>
                 <td>
-                  <input type="text"  name="hiringdate"   required="required" value="<?=!empty($form_data['hiringdate'])?$form_data['hiringdate']:'';?>">  
+                  <input type="date"  name="hiringdate"   required="required" value="<?=!empty($form_data['hiringdate'])?$form_data['hiringdate']:'';?>">  
                 </td>
             </tr>
             <tr>

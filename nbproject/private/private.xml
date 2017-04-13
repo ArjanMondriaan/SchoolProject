@@ -12,21 +12,23 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/ledenBeheer.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/lid/includes/menu.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/models/InstructeurModel.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/instructeur/includes/menu.php</file>
+            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/instructeurAanpassen.php</file>
+            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/trainingsvormenBeheer.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/models/AdministratieModel.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/controls/AdministratieController.php</file>
+            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/instructeur/lessen.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/includes/header.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/lid/includes/header.php</file>
+            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/instructeursBeheer.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/models/LidModel.php</file>
-            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/models/db/Afdeling.php</file>
-            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/includes/menu.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/controls/LidController.php</file>
+            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/administratie/instructeurToevoegen.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/lid/inschrijven.php</file>
-            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/models/db/Training.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/view/tpls/lid/gegevensWijzigen.php</file>
-            <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/models/db/Contact.php</file>
             <file>file:/C:/wamp64/www/trainingfactory/nl/mondriaan/ict/ao/telefoonlijst/controls/InstructeurController.php</file>
         </group>
     </open-files>

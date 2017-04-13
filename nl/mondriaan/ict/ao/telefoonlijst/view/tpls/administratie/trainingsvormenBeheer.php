@@ -30,7 +30,16 @@ include 'includes/menu.php';?>
                         <td></td>
                     </tr>
                 <?php endforeach;?>
-                    <tr><td><a href="?control=administratie&action=trainingsvormToevoegen">toevoegen</a></td></tr>
+                       <tr>
+                    <td>
+                        <a href='?control=Instructeur&action=addLes'>
+                            <figure>
+                                <img style="width:10%;" src="img/toevoegen.png" alt='voeg een activiteit toe' title='voeg een activiteit toe' />
+                            </figure>
+                        </a>
+                    </td>
+                    <td colspan='8'>Voeg een trainingsvorm toe</td>
+                </tr>
             </table>
             <br id ="breaker">
         </section>
