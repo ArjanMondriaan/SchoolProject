@@ -15,6 +15,7 @@ class Afdeling extends \ao\php\framework\models\db\Entiteit{
     protected $trainingid;
     protected $description;
     protected $extra_costs;
+    protected $aantal_deelnemers;
 
 
     public function __construct()

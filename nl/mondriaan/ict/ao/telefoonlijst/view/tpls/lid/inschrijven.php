@@ -16,6 +16,7 @@ include 'includes/menu.php';?>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $i = 0; ?>
                 <?php foreach($beschikbareLessen as $les){ ?>
                     <tr>
                         <td>
@@ -34,9 +35,23 @@ include 'includes/menu.php';?>
                             €<?= $les->getExtra_costs();?>
                         </td>
                         <td>
-                            <a href='?control=lid&action=addDeelname&id=<?= $les->getId()?>' >+</a>
+
+                            <?php if(isset($aantalDeelnemers[$i]) && $les->getId()==$aantalDeelnemers[$i]->getLessonid()){  
+                                if($aantalDeelnemers[$i]->getAantal_deelnemers() >= $aantalDeelnemers[$i]->getMaxpersons())
+                                {
+                                    echo 'vol';
+                                }
+                                else
+                                {
+                                    echo "<a href='?control=lid&action=adddeelname&id=".$les->getId()."'><img style='width: 20px;' src='img/toevoegen.png'>";
+                                }    
+                            }
+                            else{
+                                echo "<a href='?control=lid&action=adddeelname&id=".$les->getId()."'><img style='width: 20px;' src='img/toevoegen.png'>";
+                            } ?>
                         </td>
                     </tr>
+                    <?php $i++;?>
                 <?php } ?>
                 </tbody>
             </table>

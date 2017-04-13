@@ -66,9 +66,12 @@ class LidModel extends \ao\php\framework\models\AbstractModel
             
                 $sql="UPDATE `persons` SET street=:straat"
             . ",postalcode=:postcode,place=:stad,"
-             . "emailaddress=:email where `persons`.`id`= '1' ";
+             . "emailaddress=:email where `persons`.`id`= :id ";
             
             $stmnt = $this->dbh->prepare($sql);
+            $gebruiker=$this->getGebruiker();
+            $id = $gebruiker->getId();
+            $stmnt->bindParam(':id', $id);
             $stmnt->bindParam(':straat', $straat);
             $stmnt->bindParam(':postcode', $postcode);
             $stmnt->bindParam(':stad', $stad);
@@ -204,5 +207,14 @@ class LidModel extends \ao\php\framework\models\AbstractModel
             return REQUEST_SUCCESS;
         }
         return REQUEST_NOTHING_CHANGED;
+    }
+    
+    public function getAantalDeelnemers()
+    {
+       $sql='select registrations.lessonid, count(*) as aantal_deelnemers, lessons.maxpersons FROM registrations JOIN lessons on registrations.lessonid=lessons.id GROUP BY registrations.lessonid';          
+       $stmnt = $this->dbh->prepare($sql);
+       $stmnt->execute();
+       $aantalDeelnemers = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Afdeling');    
+       return $aantalDeelnemers;
     }
 }

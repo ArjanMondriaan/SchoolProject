@@ -62,12 +62,14 @@ class LidController extends \ao\php\framework\controls\AbstractController
     }
     
     protected function inschrijvenAction(){
-        
         $beschikbareLessen = $this->model->getBeschikbareLessen();
         $this->view->set("beschikbareLessen",$beschikbareLessen);
         
         $ingeschrevenLessen = $this->model->getIngeschrevenLessen();
         $this->view->set("ingeschrevenLessen",$ingeschrevenLessen);
+        
+        $aantalDeelnemers = $this->model->getAantalDeelnemers();
+        $this->view->set("aantalDeelnemers",$aantalDeelnemers);
     }
     
     protected function addDeelnameAction()
