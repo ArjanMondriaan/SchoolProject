@@ -5,7 +5,7 @@
     use nl\mondriaan\ict\ao\telefoonlijst\view as VIEW;
     use nl\mondriaan\ict\ao\telefoonlijst\utils\Foto as FOTO;
     
-class SecretaresseController extends \ao\php\framework\controls\AbstractController
+class AdministratieController extends \ao\php\framework\controls\AbstractController
 {
    
     public function __construct($control,$action)
@@ -14,7 +14,7 @@ class SecretaresseController extends \ao\php\framework\controls\AbstractControll
     }
 
     /**
-    * execute vertaalt de action variable dynamisch naar een handler van de specifieke controller.
+    * execute memes vertaalt de action variable dynamisch naar een handler van de specifieke controller.
     * als de handler niet bestaat wordt de default als action ingesteld en
     * wordt de taak overgedragen aan de defaultAction handler. defauktAction bestaat altijd wel
     */
@@ -27,7 +27,7 @@ class SecretaresseController extends \ao\php\framework\controls\AbstractControll
   
     protected function defaultAction()
     {
-       $gebruiker = $this->model->getGebruiker();
+        $gebruiker = $this->model->getGebruiker();
         $this->view->set('gebruiker',$gebruiker);
         $contacten = $this->model->getContacten();
         $this->view->set('contacten', $contacten);
@@ -241,4 +241,231 @@ class SecretaresseController extends \ao\php\framework\controls\AbstractControll
         $this->view->set('contact',$contact);
         $this->model->GetMedewerkergegevens();
     }
+    
+    protected function ledenBeheerAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+  
+        $contacten = $this->model->getContacten();
+        $this->view->set('contacten', $contacten);
+        
+    }
+    
+    protected function lidAanpassenAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+        $lid = $this->model->getPersoon();
+        $this->view->set('lid',$lid);
+        if($this->model->isPostLeeg())
+        {
+           $this->view->set("boodschap","Wijzig hier de lids gegevens");
+        }
+        else
+        {
+            $result = $this->model->wijzigLid();
+            switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','wijziging lid gelukt');
+                    $this->forward("ledenBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","gegevens niet goed ingevuld!");
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("boodschap","Niet alle velden ingevuld!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("boodschap","Er was niets te wijzigen");
+                    break;
+            }
+        }
+        
+    }
+    
+    protected function lidVerwijderenAction(){
+        $result = $this->model->verwijderPersoon();
+        switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','Lid verwijdert');
+                    $this->forward("ledenBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","Fout tijdens het verwijderen van een lid");
+                    break;
+            }
+    }
+    
+    
+    protected function instructeursBeheerAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+  
+        $contacten = $this->model->getInstructeurs();
+        $this->view->set('contacten', $contacten);
+        
+    }
+    
+    protected function instructeurAanpassenAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+        $lid = $this->model->getPersoon();
+        $this->view->set('lid',$lid);
+        if($this->model->isPostLeeg())
+        {
+           $this->view->set("boodschap","Wijzig hier de instructeurs gegevens");
+        }
+        else
+        {
+            $result = $this->model->wijzigInstructeur();
+            switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','wijziging instructeurs gelukt');
+                    $this->forward("instructerBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","gegevens niet goed ingevuld!");
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("boodschap","Niet alle velden ingevuld!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("boodschap","Er was niets te wijzigen");
+                    break;
+            }
+        }
+        
+    }
+    
+    protected function instructeurVerwijderenAction(){
+        $result = $this->model->verwijderPersoon();
+        switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','Lid verwijdert');
+                    $this->forward("ledenBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","Fout tijdens het verwijderen van een lid");
+                    break;
+            }
+    }
+    
+    protected function instructeurToevoegenAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+         if($this->model->isPostLeeg())
+        {
+           $this->view->set("boodschap","Wijzig hier de lids gegevens");
+        }
+        else
+        {
+            $result = $this->model->toevoegenInstructeur();
+            switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','toevoegen instructeur gelukt');
+                    $this->forward("instructerBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","gegevens niet goed ingevuld!");
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("boodschap","Niet alle velden ingevuld!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("boodschap","Er was niets te wijzigen");
+                    break;
+            }
+        }
+    
+    }
+    
+    protected function trainingsVormenBeheerAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+  
+        $trainingsvormen = $this->model->getTrainingsvormen();
+        $this->view->set('trainingsvormen', $trainingsvormen);
+        
+    }
+    
+    protected function trainingsvormAanpassenAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+        $trainingsvorm = $this->model->getTrainingsvorm();
+        $this->view->set('trainingsvorm',$trainingsvorm);
+        if($this->model->isPostLeeg())
+        {
+           $this->view->set("boodschap","Wijzig hier de traingsvorm gegevens");
+        }
+        else
+        {
+            $result = $this->model->wijzigTrainingsvorm();
+            switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','wijziging trainingsvorm gelukt');
+                    $this->forward("instructerBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","gegevens niet goed ingevuld!");
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("boodschap","Niet alle velden ingevuld!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("boodschap","Er was niets te wijzigen");
+                    break;
+            }
+        }
+        
+    }
+    
+    protected function trainingsvormVerwijderenAction(){
+        $result = $this->model->verwijderTrainingsvorm();
+        switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','training verwijdert');
+                    $this->forward("ledenBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","Fout tijdens het verwijderen van een trainingsvorm");
+                    break;
+            }
+    }
+    
+    protected function trainingsvormToevoegenAction(){
+        $gebruiker = $this->model->getGebruiker();
+        $this->view->set('gebruiker',$gebruiker);
+         if($this->model->isPostLeeg())
+        {
+           $this->view->set("boodschap","Wijzig hier de lids gegevens");
+        }
+        else
+        {
+            $result = $this->model->toevoegenTrainingsvorm();
+            switch($result)
+            {
+                case REQUEST_SUCCESS:
+                    $this->view->set('boodschap','toevoegen instructeur gelukt');
+                    $this->forward("instructerBeheer");
+                    break;
+                case REQUEST_FAILURE_DATA_INVALID:
+                    $this->view->set("boodschap","gegevens niet goed ingevuld!");
+                    break;
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                    $this->view->set("boodschap","Niet alle velden ingevuld!");
+                    break;
+                case REQUEST_NOTHING_CHANGED:
+                    $this->view->set("boodschap","Er was niets te wijzigen");
+                    break;
+            }
+        }
+    
+    }
+    
 }
