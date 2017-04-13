@@ -67,5 +67,48 @@ class LidController extends \ao\php\framework\controls\AbstractController
         
         $beschikbareLessen = $this->model->getBeschikbareLessen();
         $this->view->set("beschikbareLessen",$beschikbareLessen);
+        
+        $ingeschrevenLessen = $this->model->getIngeschrevenLessen();
+        $this->view->set("ingeschrevenLessen",$ingeschrevenLessen);
+    }
+    
+    protected function addDeelnameAction()
+    {
+        $result=$this->model->addDeelname();
+            switch($result)
+            {
+                case REQUEST_FAILURE_DATA_INCOMPLETE:
+                $this->view->set('boodschap','geen toe te voegen activiteit gegeven, dus niets toegevoegd');
+                break;
+            case REQUEST_FAILURE_DATA_INVALID:
+                $this->view->set('boodschap','activiteit bestaat niet');
+                break;
+            case REQUEST_SUCCESS:
+                $this->view->set("boodschap", "activiteit is toegevoegd."); 
+                
+                break;  
+            }  
+            $this->forward("inschrijven");
+    }
+    
+    protected function deleteDeelnameAction()
+    {
+        $result = $this->model->deleteDeelnameActiviteit();
+      switch($result)
+      {
+          case REQUEST_FAILURE_DATA_INCOMPLETE:
+              $this->view->set('boodschap','geen te verwijderen activiteit gegeven, dus niets verwijderd');
+              break;
+          case REQUEST_FAILURE_DATA_INVALID:
+              $this->view->set('boodschap','te verwijderen activiteit bestaat niet');
+              break;
+          case REQUEST_NOTHING_CHANGED:
+               $this->view->set('boodschap',' niets verwijderd reden onbekend.');
+              break;
+          case REQUEST_SUCCESS:
+              $this->view->set('boodschap','activiteit verwijderd.');
+              break;
+      }
+      $this->forward('inschrijven'); 
     }
 }
