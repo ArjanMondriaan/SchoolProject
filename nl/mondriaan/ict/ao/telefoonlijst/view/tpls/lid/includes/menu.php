@@ -9,5 +9,8 @@
                 <li>
                     <a href="?control=lid&action=inschrijven">Inschrijven</a>
                 </li>
+                <li>
+                    <a href="?control=bezoeker&action=uitloggen" >uitloggen</a>
+                </li>
             </ul>
         </nav>

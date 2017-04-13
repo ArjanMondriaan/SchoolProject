@@ -15,10 +15,10 @@
             
         }
         
-        protected function trainingenAction()
+        protected function lessenAction()
         {
-            $trainingen=$this->model->getSoortenTraining();        
-            $this->view->set('trainingen',$trainingen);
+            $lessen=$this->model->getSoortenLessen();        
+            $this->view->set('lessen',$lessen);
         }
         
         protected function uitloggenAction()
@@ -33,12 +33,12 @@
             }
             else
             {
-                $result = $this->model->wijzigSoortTraining();
+                $result = $this->model->wijzigLes();
                 switch($result)
                 {
                     case REQUEST_SUCCESS:
                         $this->view->set('boodschap','wijziging gelukt');
-                        header("location: ?control=Instructeur&action=trainingen");
+                        header("location: ?control=Instructeur&action=lessen");
                         break;
                     case REQUEST_FAILURE_DATA_INCOMPLETE:
                         $this->view->set("boodschap","De gegevens waren incompleet. Vul compleet in!");
@@ -51,23 +51,30 @@
                         break;
                 }
             }
-            $TrainingInfo = $this->model->editSoortTraining();
-            $this->view->set('TrainingInfo',$TrainingInfo);
+            $LesInfo = $this->model->editLes();
+            $this->view->set('LesInfo',$LesInfo);
         }
-        protected function addTrainingAction()
+        
+        protected function addLesAction()
         {
+            $instructeurs = $this->model->getInstructeurs();
+            $this->view->set('instructeurs',$instructeurs);
+            
+            $trainingen = $this->model->getTrainingen();
+            $this->view->set('trainingen',$trainingen);
+            
             if($this->model->isPostLeeg())
             {
                $this->view->set("boodschap","Vul gegevens in van de nieuwe cursus");          
             }
             else
             {   
-                $result=$this->model->AddSoortTraining();
+                $result=$this->model->AddLes();
                 switch($result)
                 {
-
                     case REQUEST_FAILURE_DATA_INCOMPLETE:
                         $this->view->set("boodschap", "activiteit is niet toegevoegd. Niet alle vereiste data ingevuld.");  
+                        header("location: ?control=Instructeur&action=lessons");
                         break;
                     case REQUEST_FAILURE_DATA_INVALID:
                         $this->view->set("boodschap", "activiteit is niet toegevoegd. Er is foutieve data ingestuurd.");  
@@ -78,9 +85,9 @@
                 }  
             }
         }
-        protected function deleteTrainingAction()
+        protected function deleteLesAction()
         {
-            $result = $this->model->DeleteSoortTraining();
+            $result = $this->model->DeleteLes();
             switch($result)
             {
                 case REQUEST_FAILURE_DATA_INCOMPLETE:
@@ -96,7 +103,7 @@
                     $this->view->set('boodschap','Cursus verwijderd.');
                     break;
             }
-            header("location: ?control=Instructeur&action=trainingen");
+            header("location: ?control=Instructeur&action=lessen");
         }
     }
 ?>

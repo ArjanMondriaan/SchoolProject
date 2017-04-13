@@ -17,9 +17,9 @@
                     Training Centrum </br> Den Haag
                 </h1>
             </div>
-            <div id="inlogform">
-                <a href="?control=bezoeker&action=uitloggen" >uitloggen</a>
-                </div>
+<!--            <div id="inlogform">
+                
+                </div>-->
         </header>
         <section>
 

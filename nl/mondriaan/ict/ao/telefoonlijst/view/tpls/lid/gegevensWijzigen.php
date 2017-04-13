@@ -30,7 +30,7 @@ include 'includes/menu.php';?>
                         <tr>
                             <td></td>
                             <td>
-                                <input type="submit" value="verzenden"><input type="reset" value="reset" value="<?= $gegevens->getStreet(); ?>"/>
+                                <input type="submit" value="verzenden"><input type="reset" value="reset"/>
                             </td>
                         </tr>
                     </table>
