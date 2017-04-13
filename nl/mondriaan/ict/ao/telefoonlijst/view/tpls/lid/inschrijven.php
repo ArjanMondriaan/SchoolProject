@@ -89,7 +89,8 @@ include 'includes/menu.php';?>
                             €<?= $les->getExtra_costs();?>
                         </td>
                         <td>
-                            <a href='?control=lid&action=deleteDeelname&id=<?= $les->getId()?>' >-</a>
+                            <a href='?control=lid&action=deleteDeelname&id=<?= $les->getId()?>'><img src="img/verwijder.png">
+                             </a>
                         </td>
                     </tr>
                 <?php } ?>
