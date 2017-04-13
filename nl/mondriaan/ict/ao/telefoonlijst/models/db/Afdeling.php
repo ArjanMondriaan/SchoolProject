@@ -13,6 +13,8 @@ class Afdeling extends \ao\php\framework\models\db\Entiteit{
     protected $maxpersons;
     protected $personid;
     protected $trainingid;
+    protected $description;
+    protected $extra_costs;
 
 
     public function __construct()

@@ -99,4 +99,25 @@ class LidModel extends \ao\php\framework\models\AbstractModel
         $activiteiten = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Afdeling');    
         return $activiteiten;
     }
+    
+    public function getBeschikbareLessen()
+    {
+        $sql='SELECT DATE_FORMAT(`lessons`.`date`, "%d-%m-%Y") as `date`, 
+           DATE_FORMAT(`lessons`.`time`,"%H:%i") as `time`, 
+           `training`.`extra_costs`, 
+           `lessons`.`id` as `id`, 
+           `training`.`description` 
+           FROM `lessons` 
+           JOIN `training` on `lessons`.`id` = `training`.`id` 
+           WHERE `lessons`.`id` NOT IN (SELECT lessonid FROM `registrations` 
+                                    WHERE `registrations`.`personid`=:id)
+             order by  DATE(`lessons`.`date`)';
+            
+       $stmnt = $this->dbh->prepare($sql);
+       $id=$this->getGebruiker()->getId();
+       $stmnt->bindParam(':id',$id );
+       $stmnt->execute();
+       $beschikbareLessen = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Afdeling');    
+       return $beschikbareLessen;
+    }
 }

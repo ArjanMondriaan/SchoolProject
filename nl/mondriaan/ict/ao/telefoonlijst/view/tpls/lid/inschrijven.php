@@ -8,29 +8,29 @@ include 'includes/menu.php';?>
                 <thead>
                     <tr>
                         <td>id</td>
-                        <td>tijd</td>
                         <td>datum</td>
-                        <td>location</td>
-                        <td>max personen</td>
+                        <td>tijd</td>
+                        <td>description</td>
+                        <td>kosten</td>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($activiteiten as $activiteit){ ?>
+                <?php foreach($beschikbareLessen as $les){ ?>
                     <tr>
                         <td>
-                            <?= $activiteit->getId();?></td>
+                            <?= $les->getId();?></td>
                         </td>
                         <td>
-                            <?= $activiteit->getTime();?>
+                            <?= $les->getDate();?>
                         </td>
                         <td>
-                            <?= $activiteit->getDate();?>
+                            <?= $les->getTime();?>
                         </td>
                         <td>
-                            <?= $activiteit->getLocation();?>
+                            <?= $les->getDescription();?>
                         </td>
                         <td>
-                            <?= $activiteit->getMaxpersons();?>
+                            €<?= $les->getExtra_costs();?>
                         </td>
                     </tr>
                 <?php } ?>
