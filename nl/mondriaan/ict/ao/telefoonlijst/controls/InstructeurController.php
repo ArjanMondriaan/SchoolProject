@@ -20,6 +20,12 @@
             $trainingen=$this->model->getSoortenTraining();        
             $this->view->set('trainingen',$trainingen);
         }
+        
+        protected function uitloggenAction()
+    {
+        $this->model->uitloggen();
+        $this->forward('default','bezoeker');
+    }
         protected function editTrainingAction() {
             if($this->model->isPostLeeg())
             {

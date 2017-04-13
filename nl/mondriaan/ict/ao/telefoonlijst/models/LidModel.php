@@ -26,10 +26,10 @@ class LidModel extends \ao\php\framework\models\AbstractModel
         return false;     
    }
    
-   public function getGebruiker()
-   {
-       return $_SESSION['gebruiker'];
-   }
+//   public function getGebruiker()
+//   {
+//       return $_SESSION['gebruiker'];
+//   }
    
    public function uitloggen()
    {
