@@ -138,4 +138,12 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
         }
         return REQUEST_NOTHING_CHANGED;
     }
+    
+   public function uitloggen()
+   {
+       $_SESSION = array();
+       session_destroy();
+   }
 }
+
+?>

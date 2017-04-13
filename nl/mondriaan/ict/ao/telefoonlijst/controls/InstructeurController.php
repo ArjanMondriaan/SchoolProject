@@ -1,7 +1,6 @@
 <?php
     namespace nl\mondriaan\ict\ao\telefoonlijst\controls;
-    use nl\mondriaan\ict\ao\telefoonlijst\models as MODELS;
-    use nl\mondriaan\ict\ao\telefoonlijst\view as VIEW;
+
 
     class InstructeurController extends \ao\php\framework\controls\AbstractController
     {
@@ -13,6 +12,12 @@
         protected function defaultAction()
         {
             
+        }
+        
+        protected function deelnemerAction(){
+            
+           $alleLessen = $this->model->getAlleLessen();
+           $this->view->set('$alleLessen',$$alleLessen);
         }
         
         protected function trainingenAction()
@@ -92,5 +97,10 @@
             }
             header("location: ?control=Instructeur&action=trainingen");
         }
+        
+    protected function uitloggenAction()
+    {
+        $this->model->uitloggen();
+        $this->forward('default','bezoeker');
     }
-?>
+}
