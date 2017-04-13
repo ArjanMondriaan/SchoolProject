@@ -47,6 +47,13 @@ class BezoekerController extends \ao\php\framework\controls\AbstractController
     protected function aanbodAction()
     {
     }
+    
+    protected function gedragregelsAction(){
+    }
+    
+    protected function contactAction(){
+    }
+    
     protected function defaultAction()
     {
         if($this->model->isPostLeeg())
