@@ -106,8 +106,7 @@ body>section>#content {
 }
 
 #inlogform{
-    display: inline-block;
-    float: right;
+    padding:20px;
 }
 ul {
     list-style-type: none;

@@ -17,7 +17,7 @@
                     Training Centrum </br> Den Haag
                 </h1>
             </div>
-            <form  method="post" autocomplete="off" id="inlogform">
+<!--            <form  method="post" autocomplete="off" id="inlogform">
                     <table>    
                         <tr>
                             <td>
@@ -36,5 +36,5 @@
                             </td>
                         </tr>
                     </table>
-                </form>
+                </form>-->
         </header> 
