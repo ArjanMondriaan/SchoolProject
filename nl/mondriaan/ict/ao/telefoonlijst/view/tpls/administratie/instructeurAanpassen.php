@@ -56,7 +56,7 @@ include 'includes/menu.php';?>
             <tr> 
                 <td>aanneem datum:</td>
                 <td>
-                  <input type="text"  name="hiringdate"   required="required" value="<?= $lid->getHiringdate();?>">  
+                  <input type="date"  name="hiringdate"   required="required" value="<?= $lid->getHiringdate();?>">  
                 </td>
             </tr>
             <tr>
