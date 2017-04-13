@@ -81,6 +81,15 @@ include 'includes/menu.php';?>
                 </tbody>
             </table>
             
+            <?php $totaal=0;
+                foreach($ingeschrevenLessen as $activiteit)
+                {
+                  $totaal+=$activiteit->getExtra_costs();
+                }
+                echo "<hr>&nbsp;Totaal: &euro;".number_format($totaal,2,',','.');
+
+          ?>
+            
             <br id ="breaker" />
         </section>
 <?php include 'includes/footer.php';

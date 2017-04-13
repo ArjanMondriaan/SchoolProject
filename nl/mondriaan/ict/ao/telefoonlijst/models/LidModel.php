@@ -108,7 +108,7 @@ class LidModel extends \ao\php\framework\models\AbstractModel
            `lessons`.`id` as `id`, 
            `training`.`description` 
            FROM `lessons` 
-           JOIN `training` on `lessons`.`id` = `training`.`id` 
+           JOIN `training` on `lessons`.`trainingid` = `training`.`id` 
            WHERE `lessons`.`id` NOT IN (SELECT lessonid FROM `registrations` 
                                     WHERE `registrations`.`personid`=:id)
              order by  DATE(`lessons`.`date`)';
@@ -160,9 +160,9 @@ class LidModel extends \ao\php\framework\models\AbstractModel
            `lessons`.`id`, 
            `training`.`description`
            FROM `lessons` 
-            JOIN `training` on `lessons`.`id` = `training`.`id`
+            JOIN `training` on `lessons`.`trainingid` = `training`.`id`
             WHERE `lessons`.`id` IN (SELECT lessonid FROM `registrations` 
-                                    WHERE `registrations`.`personid`=1)
+                                    WHERE `registrations`.`personid`=:id)
             order by  DATE(`lessons`.`date`)';
                 
        $stmnt = $this->dbh->prepare($sql);
