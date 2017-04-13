@@ -7,27 +7,27 @@ include 'includes/menu.php';?>
                 <table>
                     <caption>Aanpassen van een bestaande training</caption>
                     <tr>
-                        <td>Naam:</td>
+                        <td>Locatie:</td>
                         <td>
-                            <input type="text" placeholder='kies verplicht een naam' name="naam" required="required" value="<?= $TrainingInfo->getName(); ?>" >
+                            <input type="text" placeholder='kies verplicht een locatie' name="location" required="required" value="<?= $LesInfo->getLocation(); ?>" >
                         </td>
                     </tr>
                     <tr>
-                        <td>Description:</td>
+                        <td>Tijdstip:</td>
                         <td>
-                            <textarea name='description' cols='100' rows='10'   ><?= $TrainingInfo->getDescription();?></textarea>
+                            <input type="time" placeholder='kies verplicht een tijdstip' name="time" required="required" value="<?= $LesInfo->getTime(); ?>" >
                         </td>
                     </tr>
                     <tr>
-                        <td>Tijdsduur:</td>
+                        <td>Datum:</td>
                         <td>
-                            <input type="time" placeholder='kies verplicht een tijdsduur' name="duration" required="required" value="<?= $TrainingInfo->getDuration(); ?>" >
+                            <input type="date" placeholder='kies verplicht een datum' name="date" required="required" value="<?= $LesInfo->getDate(); ?>" >
                         </td>
                     </tr>
                     <tr>
-                        <td>Extra kosten:</td>
+                        <td>Max aantal personen:</td>
                         <td>
-                            <input type="number" placeholder='kies verplicht een extra coste' name="extra_costs" value="<?= $TrainingInfo->getExtra_costs(); ?>" >
+                            <input type="number" placeholder='kies een mximaal aantal personen' name="maxpersons" value="<?= $LesInfo->getMaxpersons(); ?>" >
                         </td>
                     </tr>
                     <tr>

@@ -8,23 +8,22 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
     {
         parent::__construct($control, $action);
     }
-    
-    public function getSoortenTraining()
+    public function getSoortenLessen()
     {
-       $sql = 'SELECT * FROM `training`';
+       $sql = 'SELECT * FROM `lessons`';
        $stmnt = $this->dbh->prepare($sql);
        $stmnt->execute();
-       $s = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Training');    
+       $s = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Lessons');    
        return $s;
     }
-    public function wijzigSoortTraining() {
+    public function wijzigLes() {
         $id= filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
-        $description = filter_input(INPUT_POST, 'description');
-        $duration= filter_input(INPUT_POST, 'duration');
-        $extra_costs= filter_input(INPUT_POST, 'extra_costs');
-        $naam= filter_input(INPUT_POST, 'naam');
+        $time = filter_input(INPUT_POST, 'time');
+        $date= filter_input(INPUT_POST, 'date');
+        $location= filter_input(INPUT_POST, 'location');
+        $maxpersons= filter_input(INPUT_POST, 'maxpersons');
         
-        if($description===null || $duration===null || $extra_costs===null || $naam===null )
+        if($time===null || $date===null || $location===null)
         {
             return REQUEST_FAILURE_DATA_INCOMPLETE;
         }
@@ -34,14 +33,14 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
             return REQUEST_FAILURE_DATA_INVALID;
         }
 
-        $sql="UPDATE `training` SET description=:desc,duration=:duration,extra_costs=:extra,name=:naam where `training`.`id`= :id; ";
+        $sql="UPDATE `lessons` SET time=:time,date=:date,location=:location,maxpersons=:maxpersons where `lessons`.`id`= :id; ";
 
         $stmnt = $this->dbh->prepare($sql);
         $stmnt->bindParam(':id', $id);        
-        $stmnt->bindParam(':desc', $description);
-        $stmnt->bindParam(':duration', $duration);
-        $stmnt->bindParam(':extra', $extra_costs);
-        $stmnt->bindParam(':naam', $naam); 
+        $stmnt->bindParam(':time', $time);
+        $stmnt->bindParam(':date', $date);
+        $stmnt->bindParam(':location', $location);
+        $stmnt->bindParam(':maxpersons', $maxpersons); 
         try
         {
             $stmnt->execute();
@@ -59,36 +58,39 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
         }
         return REQUEST_NOTHING_CHANGED;
     }
-    public function editSoortTraining() 
+    public function editLes() 
     {
         $id= filter_input(INPUT_GET,'id');
-        $sql = "SELECT * FROM training WHERE id=:id";
+        $sql = "SELECT * FROM lessons WHERE id=:id";
         $stmnt = $this->dbh->prepare($sql);
         $stmnt->bindParam(':id', $id); 
         $stmnt->execute();
-        $TrainingInfo = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Training');    
-        return $TrainingInfo[0];
+        $lessenInfo = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Lessons');    
+        return $lessenInfo[0];
     }
-    public function AddSoortTraining() {
-        $description = filter_input(INPUT_POST, 'description');
-        $duration= filter_input(INPUT_POST, 'duration');
-        $extra_costs= filter_input(INPUT_POST, 'extra_costs');
-        $naam= filter_input(INPUT_POST, 'naam');
+    public function AddLes() {
+        $time = filter_input(INPUT_POST, 'time');
+        $date= filter_input(INPUT_POST, 'date');
+        $location= filter_input(INPUT_POST, 'location');
+        $maxpersons= filter_input(INPUT_POST, 'maxpersons');
+        $instructeurs= filter_input(INPUT_POST, 'instructeur');
+        $les= filter_input(INPUT_POST, 'training');
         
-        if($description===null || $duration===null)
+        if($time===null || $date===null || $location===null)
         {
             return REQUEST_FAILURE_DATA_INCOMPLETE;
         }
         
 
-        $sql="INSERT INTO `training` (description,duration,extra_costs,name) VALUES (:desc,:duration,:extra,:naam)";
+        $sql="INSERT INTO `lessons` (time,date,location,maxpersons,personid,trainingid) VALUES (:time,:date,:location,:maxpersons,:instructeur,:les)";
 
         $stmnt = $this->dbh->prepare($sql);  
-        $stmnt->bindParam(':desc', $description);
-        $stmnt->bindParam(':duration', $duration);
-        $stmnt->bindParam(':extra', $extra_costs);
-        $stmnt->bindParam(':naam', $naam);
-           
+        $stmnt->bindParam(':time', $time);
+        $stmnt->bindParam(':date', $date);
+        $stmnt->bindParam(':location', $location);
+        $stmnt->bindParam(':maxpersons', $maxpersons);
+        $stmnt->bindParam(':instructeur', $instructeurs);
+        $stmnt->bindParam(':les', $les);  
         try
         {
             $stmnt->execute();
@@ -106,8 +108,22 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
         }
         return REQUEST_NOTHING_CHANGED;
     }
-    
-    public function deleteSoortTraining()
+    public function getInstructeurs(){
+        
+        $sql = "SELECT * FROM persons where role = 'Instructeur'";
+        $stmnt = $this->dbh->prepare($sql);
+        $stmnt->execute();
+        $Instructeurs = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Contact');    
+        return $Instructeurs;
+    }
+    public function getTrainingen(){
+        $sql = "SELECT * FROM training";
+        $stmnt = $this->dbh->prepare($sql);
+        $stmnt->execute();
+        $trainingen = $stmnt->fetchAll(\PDO::FETCH_CLASS,__NAMESPACE__.'\db\Training');    
+        return $trainingen;
+    }
+    public function deleteLes()
     {
         $id= filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
        
@@ -120,7 +136,7 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
             return REQUEST_FAILURE_DATA_INVALID;
         }   
        
-        $sql = "DELETE FROM `training` WHERE `training`.`id`=:id";
+        $sql = "DELETE FROM `lessons` WHERE `lessons`.`id`=:id";
         $stmnt = $this->dbh->prepare($sql);
         $stmnt->bindParam(':id', $id); 
         try
@@ -138,4 +154,6 @@ class InstructeurModel extends \ao\php\framework\models\AbstractModel
         }
         return REQUEST_NOTHING_CHANGED;
     }
+    
+    
 }
