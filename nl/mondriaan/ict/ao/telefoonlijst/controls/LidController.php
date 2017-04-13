@@ -109,6 +109,8 @@ class LidController extends \ao\php\framework\controls\AbstractController
               $this->view->set('boodschap','activiteit verwijderd.');
               break;
       }
-      $this->forward('inschrijven'); 
+      
+      $this->forward('inschrijven');
+      
     }
 }
