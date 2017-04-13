@@ -1,5 +1,7 @@
 <?php include 'includes/header.php';
 include 'includes/menu.php';?>
+<section>
+    <center>
 <form  method="post" autocomplete="off" id="inlogform">
                     <table>    
                         <tr>
@@ -13,11 +15,12 @@ include 'includes/menu.php';?>
                            </td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td>
                                 <input type="submit" value="inloggen"><input type="reset" value="reset" />
                             </td>
                         </tr>
                     </table>
                 </form>
+    </center>
+</section>
 <?php include 'includes/footer.php';

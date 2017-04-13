@@ -30,7 +30,6 @@
                            </td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td>
                                 <input type="submit" value="inloggen"><input type="reset" value="reset" />
                             </td>

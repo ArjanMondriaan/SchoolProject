@@ -6,6 +6,7 @@ namespace nl\mondriaan\ict\ao\telefoonlijst\models\db;
     protected $description;
     protected $duration;
     protected $extra_costs;
+    protected $name;
     
     public function __construct()
     {

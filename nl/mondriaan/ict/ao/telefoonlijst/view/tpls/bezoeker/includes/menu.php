@@ -15,8 +15,6 @@
                 <li>
                     <a href="?control=bezoeker&action=contact">Locatie & contact</a>
                 </li>
-                <li>
-                    <a href="?control=bezoeker&action=inloggen">Inloggen</a>
-                </li>
+                
             </ul>
         </nav>
